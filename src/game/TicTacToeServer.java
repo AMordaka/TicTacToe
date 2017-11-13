@@ -27,7 +27,8 @@ public class TicTacToeServer {
 
         JAXBContext jaxbContext = JAXBContext.newInstance(TicTacToeServer.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        TicTacToeServer config = (TicTacToeServer) jaxbUnmarshaller.unmarshal(new File("config.xml"));
+        System.out.println(new File("config.xml").getAbsolutePath());
+        TicTacToeServer config = (TicTacToeServer) jaxbUnmarshaller.unmarshal(new File("src/game/config.xml"));
         System.out.println(config.getPort());
         ServerSocket listener = new ServerSocket(config.getPort());
         System.out.println("Tic Tac Toe Server is Running");

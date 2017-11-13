@@ -1,7 +1,7 @@
 package JUnit;
 
-import game.Game;
-import game.TicTacToeServer;
+import game.server.Game;
+import game.server.TicTacToeServer;
 import org.junit.Before;
 import org.junit.Test;
 

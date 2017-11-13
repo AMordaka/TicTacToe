@@ -1,2 +1,2 @@
 # TicTacToe
-TicTacToe for 3 players
+TicTacToe for 3 players in JavaFx/Swing

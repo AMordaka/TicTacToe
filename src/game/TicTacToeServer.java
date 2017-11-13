@@ -1,9 +1,7 @@
 package game;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.File;
@@ -13,11 +11,16 @@ import java.net.ServerSocket;
 @XmlRootElement(name = "Server")
 public class TicTacToeServer {
 
-    @XmlTransient
-    private static int port;
 
-    public  int getPort() {
+    @XmlTransient
+    private int port;
+
+    public int getPort() {
         return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
     }
 
     public static void main(String[] args) throws Exception {
@@ -25,8 +28,8 @@ public class TicTacToeServer {
         JAXBContext jaxbContext = JAXBContext.newInstance(TicTacToeServer.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         TicTacToeServer config = (TicTacToeServer) jaxbUnmarshaller.unmarshal(new File("config.xml"));
-        port = config.getPort();
-        ServerSocket listener = new ServerSocket(port);
+        System.out.println(config.getPort());
+        ServerSocket listener = new ServerSocket(config.getPort());
         System.out.println("Tic Tac Toe Server is Running");
         try {
             while (true) {

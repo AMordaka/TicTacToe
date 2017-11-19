@@ -6,11 +6,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.Optional;
 
 public class Controller {
+
+    private static final String LOCALHOST = "localhost";
 
     @FXML
     private Button start;
@@ -35,7 +36,12 @@ public class Controller {
             new Thread(() -> {
                 while (true) {
                     try {
-                        TicTacToeClient.main(null);
+                        while (true) {
+                            TicTacToeClient client = new TicTacToeClient(LOCALHOST);
+                            client.setSettings(stage);
+                            client.play();
+
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

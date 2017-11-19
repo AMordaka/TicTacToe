@@ -21,12 +21,10 @@ import javax.swing.JPanel;
 
 public class TicTacToeClient {
 
-    private static final String LOCALHOST = "localhost";
-
     private static int PORT = 4501;
 
-
-    private JFrame frame = new JFrame("Tic Tac Toe");
+    private Stage stage;
+    public JFrame frame = new JFrame("Tic Tac Toe");
     private JLabel messageLabel = new JLabel("");
     private ImageIcon icon;
     private ImageIcon firstOpponentIcon;
@@ -34,8 +32,6 @@ public class TicTacToeClient {
 
     private Square[] board = new Square[100];
     private Square currentSquare;
-    private Stage stage;
-
 
     private Socket socket;
     private BufferedReader in;
@@ -75,19 +71,19 @@ public class TicTacToeClient {
             if (response.startsWith("WELCOME")) {
                 char mark = response.charAt(8);
                 if(mark == 'X'){
-                    icon = new ImageIcon("x.gif");
-                    firstOpponentIcon = new ImageIcon("o.gif");
-                    secondOpponentIcon = new ImageIcon("y.gif");
+                    icon = new ImageIcon(getClass().getResource("x.gif"));
+                    firstOpponentIcon = new ImageIcon(getClass().getResource("o.gif"));
+                    secondOpponentIcon = new ImageIcon(getClass().getResource("y.gif"));
                     frame.setTitle("Tic Tac Toe - Player " + mark);
                 }else if(mark == 'O'){
-                    icon = new ImageIcon("o.gif");
-                    firstOpponentIcon = new ImageIcon("y.gif");
-                    secondOpponentIcon = new ImageIcon("x.gif");
+                    icon = new ImageIcon(getClass().getResource("o.gif"));
+                    firstOpponentIcon = new ImageIcon(getClass().getResource("y.gif"));
+                    secondOpponentIcon = new ImageIcon(getClass().getResource("x.gif"));
                     frame.setTitle("Tic Tac Toe - Player " + mark);
                 }else if(mark == 'Y'){
-                    icon = new ImageIcon("y.gif");
-                    firstOpponentIcon = new ImageIcon("x.gif");
-                    secondOpponentIcon = new ImageIcon("o.gif");
+                    icon = new ImageIcon(getClass().getResource("y.gif"));
+                    firstOpponentIcon = new ImageIcon(getClass().getResource("x.gif"));
+                    secondOpponentIcon = new ImageIcon(getClass().getResource("o.gif"));
                     frame.setTitle("Tic Tac Toe - Player " + mark);
                 }
             }
@@ -152,14 +148,11 @@ public class TicTacToeClient {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        while (true) {
-            TicTacToeClient client = new TicTacToeClient(LOCALHOST);
-            client.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            client.frame.setSize(800   , 600);
-            client.frame.setVisible(true);
-            client.frame.setResizable(false);
-            client.play();
-        }
+    public void setSettings(Stage stage){
+        this.stage = stage;
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800   , 600);
+        frame.setVisible(true);
+        frame.setResizable(false);
     }
 }
